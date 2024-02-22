@@ -36,6 +36,7 @@ const fetchProduct = (productUrl) => {
 const sellers = [
     "https://www.buysellvouchers.com/en/seller/info/Hamede1812/",
     "https://www.buysellvouchers.com/en/seller/info/kabos/",
+    "https://www.buysellvouchers.com/en/seller/info/hira095690/"
   ];
 
   const psnTags = ["PSN" , "psn" , "Playstation" , "PlayStation" , "network" , "usa" , "USA" ]
@@ -45,7 +46,7 @@ const sellers = [
     sellers.map((prod) => {
         fetchProduct(prod);
     });
-    setTimeout(Track, 500000);
+    setTimeout(Track, 300000);
   };
   
   Track();
