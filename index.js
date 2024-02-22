@@ -30,7 +30,7 @@ const fetchProduct = (productUrl) => {
            const result = $(value).attr("href")
            const fullLink  = "https://www.buysellvouchers.com" + result
 
-           const finalResult = `Title: ${title} \n \n Link : ${fullLink}\n \n`
+           const finalResult = `${title} \n \n \n ${fullLink}`
            sendMessage(finalResult)
             
            })
