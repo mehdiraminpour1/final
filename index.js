@@ -6,30 +6,42 @@ const token = "5185322730:AAGgOzg0LNwL2wH0fo2BG36a9wF6v0Me6NM"
 const bot = new TelegramBot(token, {polling: true});
 
 
-const sendMessage = (title) => {
-    bot.sendMessage(-4143039296 , `${title} published`)
+const sendMessage = (message) => {
+
+    
+    bot.sendMessage(-4189697153 , message)
+        
 }
 
-
 const fetchProduct = (productUrl) => {
+
 
     axios.get(productUrl).then(data => {
         const $ = cheerio.load(data.data);
         let productTitle = $(".pr-name")
+
+
         productTitle.each((index , element) => {
-            let title = $(element).find('a').text();
+            let productFinder = $(element).find('a')
 
-            psnTags.map((tag) => {
-                const checkExist = title.includes(tag)
+            productFinder.each((index, value) => {
+                const title = $(value).text()
+                
+           const result = $(value).attr("href")
+           const fullLink  = "https://www.buysellvouchers.com" + result
 
-                if(checkExist){
-                    sendMessage(title)
-                }
-            })
+           const finalResult = `Title: ${title} \n \n Link : ${fullLink}\n \n`
+           sendMessage(finalResult)
             
-        })
-        
-    });
+           })
+                
+                    
+           })
+            
+            })
+
+
+
 
 } 
 
@@ -37,16 +49,17 @@ const sellers = [
     "https://www.buysellvouchers.com/en/seller/info/Hamede1812/",
     "https://www.buysellvouchers.com/en/seller/info/kabos/",
     "https://www.buysellvouchers.com/en/seller/info/hira095690/"
+
   ];
 
-  const psnTags = ["PSN" , "psn" , "Playstation" , "PlayStation" , "network" , "usa" , "USA" ]
+
 
 
   const Track = () => {
     sellers.map((prod) => {
         fetchProduct(prod);
     });
-    setTimeout(Track, 300000);
+    setTimeout(Track, 600000);
   };
   
   Track();
